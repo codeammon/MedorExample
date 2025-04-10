@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Connector";
+}
+<h1>Online Rates</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate[0].Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate[0].Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate[0].Valid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate[0].Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Rate)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    <form method="post" asp-route-Id="@item.ID">
+                        <input type="hidden" asp-for="RateToAdd.ID"/>
+                        <input type="submit" value="Uložit data" class="btn btn-danger" />
+                    </form>
+                    <a asp-page="./Edit" asp-route-id=""></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+
+    setInterval(function() {
+       window.location.href = window.location.href;
+    }, 60 * 1000);
+  
+</script>
